@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-gold: #C5A059;
+  --color-gold-dark: #A37E36;
+  --color-gold-light: #E5C887;
+  --color-dark-surface: #08090B;
+}
+
+@layer base {
+  body {
+    background-color: #08090b;
+    color: #faf8f5;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, .font-serif-luxury {
+    font-family: var(--font-serif);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #252830;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E5C887;
+}
+
+/* Ultra-Sharp High-Contrast Metallic Champagne Gold Text */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF8EB 0%, #F5D78B 45%, #D4AF37 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sharp Gold Solid Text Utility */
+.gold-text-crisp {
+  color: #E5C887;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(to right, rgba(229, 200, 135, 0.5), rgba(255, 248, 235, 0.2), rgba(229, 200, 135, 0.5)) 1;
+}
+
+/* Antialiasing */
+section, header, footer {
+  -webkit-font-smoothing: antialiased;
+}
+
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
