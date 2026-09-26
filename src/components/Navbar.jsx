@@ -88,15 +88,15 @@ export default function Navbar({ onOpenPlanner }) {
 
           {/* Mobile Top-Right Actions: Icon-Only WhatsApp + Hamburger Menu Toggle */}
           <div className="flex md:hidden items-center gap-2">
-            {/* Icon-Only WhatsApp Badge */}
+            {/* Icon-Only WhatsApp Badge - Green Badge with White Icon Symbol */}
             <a
               href={BRAND_INFO.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366]/20 border border-[#25D366]/60 text-[#25D366] shadow-md hover:bg-[#25D366] hover:text-white transition-all active:scale-95 backdrop-blur-md"
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366] border border-[#25D366] text-white shadow-md hover:bg-[#20ba5a] transition-all active:scale-95 backdrop-blur-md"
               aria-label="WhatsApp Concierge"
             >
-              <MessageCircle className="w-4 h-4 fill-current stroke-none" />
+              <MessageCircle className="w-4 h-4 fill-white stroke-none text-white" />
             </a>
 
             {/* Mobile Hamburger Menu Toggle Button */}
