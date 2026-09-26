@@ -30,9 +30,9 @@ export default function Hero({ onOpenPlanner }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#08090B]/95 via-[#08090B]/50 to-transparent md:from-[#08090B]/80 md:via-transparent md:to-[#08090B]/20 z-1 pointer-events-none"></div>
       </div>
 
-      {/* Hero Content Layout Container - iPhone SE & 14 Pro Proportioned View */}
+      {/* Hero Content Layout Container - Shifted Down 20px on Responsive Mobile View */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex flex-col justify-end sm:justify-center pb-4 sm:pb-0">
-        <div className="w-full lg:w-[54%] max-w-[660px] flex flex-col items-start text-left">
+        <div className="w-full lg:w-[54%] max-w-[660px] flex flex-col items-start text-left pt-5 sm:pt-0">
           {/* Eyebrow Line & Text */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

@@ -4,9 +4,9 @@ export const BRAND_INFO = {
   instagram: 'https://www.instagram.com/collabeventhub/',
   handle: '@collabeventhub',
   email: 'hello@collabeventhub.com',
-  phone: '+91 94467 36876',
-  phone2: '+91 81570 69016',
-  whatsapp: 'https://wa.me/919446736876',
+  phone: '+91 81570 69016',
+  phone2: '+91 94467 36876',
+  whatsapp: 'https://wa.me/918157069016',
   location: 'KERALA • DUBAI • GOA • BANGALORE'
 };
 

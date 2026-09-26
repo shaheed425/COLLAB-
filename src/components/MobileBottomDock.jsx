@@ -39,7 +39,7 @@ export default function MobileBottomDock() {
   ];
 
   return (
-    <div className="fixed bottom-7 left-1/2 -translate-x-1/2 z-50 md:hidden w-[88%] max-w-xs pointer-events-auto">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden w-[88%] max-w-xs pointer-events-auto">
       {/* Premium Glassmorphism iPhone Dock Container - 5 Items */}
       <div className="relative bg-[#08090B]/45 backdrop-blur-xl border border-white/25 px-3 py-1.5 rounded-full flex items-center justify-around shadow-[0_12px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] ring-1 ring-[#E5C887]/30">
         {navItems.map((item) => {
