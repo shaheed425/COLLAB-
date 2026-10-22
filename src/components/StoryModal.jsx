@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, Film, ExternalLink } from 'lucide-react';
+import { X, Film, ExternalLink } from 'lucide-react';
+import { BRAND_INFO } from '../data/eventData';
 
 export default function StoryModal({ isOpen, onClose, onOpenPlanner }) {
   // Handle ESC key press
@@ -29,21 +30,21 @@ export default function StoryModal({ isOpen, onClose, onOpenPlanner }) {
           exit={{ scale: 0.92, opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative max-w-3xl w-full bg-[#0D0F14] border border-[#C5A059]/40 rounded-2xl overflow-hidden shadow-2xl my-auto flex flex-col max-h-[92vh]"
+          className="relative max-w-3xl w-full bg-[#0D0F14] border border-[#E5C887]/40 rounded-2xl overflow-hidden shadow-2xl my-auto flex flex-col max-h-[92vh]"
         >
           {/* Top Bar with Exit Cross Icon */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#12151E] shrink-0">
             <div className="flex items-center gap-2">
-              <Film className="w-4 h-4 text-[#C5A059]" />
-              <span className="text-[10px] font-mono tracking-[0.25em] text-[#C5A059] uppercase font-semibold">
-                COLLAB EVENT HUB • REEL HIGHLIGHT
+              <Film className="w-4 h-4 text-[#E5C887]" />
+              <span className="text-[10px] font-mono tracking-[0.25em] text-[#E5C887] uppercase font-semibold">
+                {BRAND_INFO.brand} • {BRAND_INFO.descriptor}
               </span>
             </div>
 
             {/* Prominent Close Button */}
             <button
               onClick={onClose}
-              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-[#C5A059] text-white hover:text-[#08090B] transition-all duration-300 border border-white/20 hover:border-[#C5A059] cursor-pointer"
+              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-[#E5C887] text-white hover:text-[#08090B] transition-all duration-300 border border-white/20 hover:border-[#E5C887] cursor-pointer"
               title="Close modal (Esc)"
               aria-label="Close modal"
             >
@@ -58,10 +59,10 @@ export default function StoryModal({ isOpen, onClose, onOpenPlanner }) {
           <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
             <div>
               <h3 className="font-serif text-2xl sm:text-3xl text-[#FAF8F5] mb-2 font-normal leading-tight">
-                Behind the Scenes: Opulent Banquet Transformation
+                Behind the Scenes: Banquet &amp; Stage Transformation
               </h3>
               <p className="text-xs sm:text-sm text-[#FAF8F5]/80 font-light leading-relaxed">
-                Experience the 48-hour transformation of our grand ballroom setup — featuring white floral chandeliers and kinetic candlelit architecture.
+                Experience the detailed execution of our stage architecture, lighting design, and floral arrangements.
               </p>
             </div>
 
@@ -72,29 +73,29 @@ export default function StoryModal({ isOpen, onClose, onOpenPlanner }) {
                 className="w-full h-full border-0"
                 allowTransparency="true"
                 allow="encrypted-media"
-                title="Collab Event Hub Instagram Reel"
+                title="Collab Events Reel"
               ></iframe>
             </div>
 
             {/* Production Highlights Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-[#FAF8F5]/80 font-light border-t border-b border-white/10 py-4">
               <div>
-                <span className="block text-[9px] text-[#C5A059] uppercase font-mono mb-1">
-                  Floral Architecture
+                <span className="block text-[9px] text-[#E5C887] uppercase font-mono mb-1">
+                  Floral Styling
                 </span>
-                <span>12,000 Imported White Orchids</span>
+                <span>Stage &amp; Mandap Canopies</span>
               </div>
               <div>
-                <span className="block text-[9px] text-[#C5A059] uppercase font-mono mb-1">
-                  Lighting Design
+                <span className="block text-[9px] text-[#E5C887] uppercase font-mono mb-1">
+                  Lighting &amp; Sound
                 </span>
-                <span>Warm Amber Kinetic Candles</span>
+                <span>Warm Amber Ambiance &amp; Acoustics</span>
               </div>
               <div>
-                <span className="block text-[9px] text-[#C5A059] uppercase font-mono mb-1">
-                  Event Location
+                <span className="block text-[9px] text-[#E5C887] uppercase font-mono mb-1">
+                  Planning Base
                 </span>
-                <span>Luxury Banquet Hall</span>
+                <span>{BRAND_INFO.location}, {BRAND_INFO.state}</span>
               </div>
             </div>
           </div>
@@ -102,12 +103,12 @@ export default function StoryModal({ isOpen, onClose, onOpenPlanner }) {
           {/* Bottom Action Footer */}
           <div className="p-4 sm:px-8 border-t border-white/10 bg-[#12151E] flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
             <a
-              href="https://www.instagram.com/reel/DcNiLzlS4Ht/"
+              href={BRAND_INFO.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#C5A059] hover:text-[#E5C887] transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#E5C887] hover:text-white transition-colors"
             >
-              <span>Open in Instagram</span>
+              <span>View On Instagram</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
 
@@ -116,7 +117,7 @@ export default function StoryModal({ isOpen, onClose, onOpenPlanner }) {
                 onClose();
                 if (onOpenPlanner) onOpenPlanner();
               }}
-              className="w-full sm:w-auto px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-[#08090B] bg-[#C5A059] hover:bg-[#E5C887] transition-all rounded-full shadow-lg"
+              className="w-full sm:w-auto px-6 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-[#08090B] bg-[#E5C887] hover:bg-[#FAF6EE] transition-all rounded-full shadow-lg cursor-pointer"
             >
               <span>Plan Your Event Story →</span>
             </button>
@@ -126,4 +127,3 @@ export default function StoryModal({ isOpen, onClose, onOpenPlanner }) {
     </AnimatePresence>
   );
 }
-

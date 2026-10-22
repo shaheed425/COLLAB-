@@ -10,11 +10,19 @@
 }
 
 @layer base {
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
+
   body {
     background-color: #08090b;
     color: #faf8f5;
     font-family: var(--font-sans);
     overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;

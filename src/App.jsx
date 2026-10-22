@@ -3,10 +3,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Introduction from './components/Introduction';
 import Services from './components/Services';
+import Packages from './components/Packages';
+import CateringMenu from './components/CateringMenu';
+import ExtraServices from './components/ExtraServices';
 import FeaturedPortfolio from './components/FeaturedPortfolio';
-import WhyChooseUs from './components/WhyChooseUs';
-import Process from './components/Process';
-import Testimonials from './components/Testimonials';
 import InstagramSection from './components/InstagramSection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -19,31 +19,48 @@ export default function App() {
   const [storyOpen, setStoryOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#08090B] text-[#FAF8F5] selection:bg-[#C5A059] selection:text-[#08090B]">
+    <div className="min-h-screen bg-[#08090B] text-[#FAF8F5] selection:bg-[#E5C887] selection:text-[#08090B]">
       {/* Navigation */}
       <Navbar onOpenPlanner={() => setPlannerOpen(true)} />
 
-      {/* Main Sections */}
-      <main className="pb-24 md:pb-0">
+      {/* Main Page Flow - Concise, Minimal & Luxurious */}
+      <main className="pb-20 md:pb-0">
+        {/* 1. Hero Section */}
         <Hero
           onOpenPlanner={() => setPlannerOpen(true)}
           onOpenStory={() => setStoryOpen(true)}
         />
-        <Introduction />
+
+        {/* 2. About Preview & Philosophy */}
+        <Introduction onOpenPlanner={() => setPlannerOpen(true)} />
+
+        {/* 3. Services Preview (4 Cards) + Explore All 12 Services */}
         <Services onOpenPlanner={() => setPlannerOpen(true)} />
+
+        {/* 4. Packages (Silver 435/-, Golden 925/-, Platinum 1450/-) */}
+        <Packages onOpenPlanner={() => setPlannerOpen(true)} />
+
+        {/* 5. Dedicated Catering Menu */}
+        <CateringMenu />
+
+        {/* 6. Extra Services (6 Arrangements) */}
+        <ExtraServices onOpenPlanner={() => setPlannerOpen(true)} />
+
+        {/* 7. Event Photography & Decor Portfolio */}
         <FeaturedPortfolio onOpenPlanner={() => setPlannerOpen(true)} />
-        <WhyChooseUs onOpenPlanner={() => setPlannerOpen(true)} />
-        <Process />
-        <Testimonials onOpenPlanner={() => setPlannerOpen(true)} />
+
+        {/* 8. Live Instagram Reels Showcase */}
         <InstagramSection />
+
+        {/* 9. Contact & Event Enquiry Section */}
         <Contact />
       </main>
 
       {/* Footer */}
       <Footer onOpenPlanner={() => setPlannerOpen(true)} />
 
-      {/* Mobile Floating iPhone Dock Bar */}
-      <MobileBottomDock onOpenPlanner={() => setPlannerOpen(true)} />
+      {/* Mobile Floating Capsule Dock */}
+      <MobileBottomDock />
 
       {/* Modals & Overlays */}
       <StoryModal

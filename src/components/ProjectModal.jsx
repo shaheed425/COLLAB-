@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Calendar, MapPin, Users, Quote, ArrowRight } from 'lucide-react';
+import { X, MapPin, MessageCircle } from 'lucide-react';
+import { BRAND_INFO, getWhatsAppUrl } from '../data/eventData';
 
-export default function ProjectModal({ project, onClose, onOpenPlanner }) {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-
-  // Close on Escape key
+export default function ProjectModal({ project, onClose }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -16,7 +14,9 @@ export default function ProjectModal({ project, onClose, onOpenPlanner }) {
 
   if (!project) return null;
 
-  const images = project.gallery && project.gallery.length > 0 ? project.gallery : [project.image];
+  const whatsappUrl = getWhatsAppUrl(
+    `Hello Collab Events, I saw your "${project.title}" (${project.category}) work and would like to inquire about similar staging for my event.`
+  );
 
   return (
     <AnimatePresence>
@@ -28,148 +28,82 @@ export default function ProjectModal({ project, onClose, onOpenPlanner }) {
         onClick={onClose}
       >
         <motion.div
-          initial={{ scale: 0.92, opacity: 0, y: 20 }}
+          initial={{ scale: 0.94, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.92, opacity: 0, y: 20 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          exit={{ scale: 0.94, opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative max-w-2xl w-full bg-[#0D0F14] border border-[#C5A059]/40 rounded-2xl overflow-hidden my-auto shadow-2xl max-h-[90vh] flex flex-col"
+          className="relative max-w-xl w-full bg-[#0D0F14] border border-[#E5C887]/40 rounded-2xl overflow-hidden my-auto shadow-2xl flex flex-col"
         >
-          {/* Header Bar with Category & Prominent Close Button */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#12151E]/90 shrink-0">
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#12151E] shrink-0">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#C5A059]"></span>
-              <span className="text-[10px] font-mono tracking-[0.25em] text-[#C5A059] uppercase font-semibold">
-                {project.categoryTag || project.categoryKey || 'FEATURED EVENT'}
+              <span className="w-2 h-2 rounded-full bg-[#E5C887]"></span>
+              <span className="text-[10px] font-mono tracking-[0.25em] text-[#E5C887] uppercase font-semibold">
+                {project.category}
               </span>
             </div>
 
-            {/* Prominent Exit / Cross Icon Button */}
             <button
               onClick={onClose}
-              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-[#C5A059] text-white hover:text-[#08090B] transition-all duration-300 border border-white/20 hover:border-[#C5A059] cursor-pointer"
-              title="Close modal (Esc)"
-              aria-label="Close modal"
+              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-[#E5C887] text-white hover:text-[#08090B] transition-all border border-white/20 hover:border-[#E5C887] cursor-pointer"
             >
-              <span className="text-[10px] font-mono uppercase tracking-widest group-hover:font-bold hidden sm:inline">
-                Close
-              </span>
+              <span className="text-[10px] font-mono uppercase tracking-widest hidden sm:inline">Close</span>
               <X className="w-4 h-4 stroke-[2.5]" />
             </button>
           </div>
 
-          {/* Compact Image Gallery Banner */}
-          <div className="relative h-56 sm:h-64 bg-black shrink-0 overflow-hidden group">
+          {/* Image */}
+          <div className="relative h-60 sm:h-72 bg-black shrink-0 overflow-hidden">
             <img
-              src={images[activeImageIndex] || project.image}
+              src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0D0F14] via-transparent to-black/30"></div>
-
-            {/* Gallery Arrows if multiple images */}
-            {images.length > 1 && (
-              <div className="absolute bottom-4 right-4 flex items-center gap-2 z-10">
-                <button
-                  onClick={() =>
-                    setActiveImageIndex(
-                      (prev) => (prev - 1 + images.length) % images.length
-                    )
-                  }
-                  className="w-7 h-7 rounded-full bg-black/70 border border-white/30 text-white flex items-center justify-center hover:bg-[#C5A059] hover:text-[#08090B] transition-colors"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <span className="text-[10px] text-white font-mono px-2 py-0.5 rounded bg-black/60 border border-white/10">
-                  {activeImageIndex + 1} / {images.length}
-                </span>
-                <button
-                  onClick={() =>
-                    setActiveImageIndex((prev) => (prev + 1) % images.length)
-                  }
-                  className="w-7 h-7 rounded-full bg-black/70 border border-white/30 text-white flex items-center justify-center hover:bg-[#C5A059] hover:text-[#08090B] transition-colors"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            )}
           </div>
 
-          {/* Body Content - Scrollable if content overflows */}
-          <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
+          {/* Content */}
+          <div className="p-6 sm:p-7 space-y-4">
             <div>
-              <h3 className="font-serif text-2xl sm:text-3xl text-[#FAF8F5] mb-2 font-normal leading-tight">
+              <h3 className="font-serif text-2xl sm:text-3xl text-[#FAF8F5] mb-2 font-normal">
                 {project.title}
               </h3>
-              <p className="text-xs sm:text-sm text-[#FAF8F5]/80 font-light leading-relaxed">
-                {project.subtitle || project.summary}
+              <p className="text-xs sm:text-sm text-[#FAF8F5]/85 font-light leading-relaxed">
+                {project.description}
               </p>
             </div>
 
-            {/* Key Event Specs Bar */}
-            <div className="grid grid-cols-3 gap-3 p-4 bg-[#141720] border border-white/10 rounded-xl">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                <div className="truncate">
-                  <span className="block text-[9px] uppercase font-mono text-[#A1A1AA]">Location</span>
-                  <span className="text-xs text-[#FAF8F5] font-medium truncate block">{project.location || 'Kerala'}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Users className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                <div className="truncate">
-                  <span className="block text-[9px] uppercase font-mono text-[#A1A1AA]">Guest Scale</span>
-                  <span className="text-xs text-[#FAF8F5] font-medium truncate block">{project.guests || '300+ Guests'}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Calendar className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                <div className="truncate">
-                  <span className="block text-[9px] uppercase font-mono text-[#A1A1AA]">Timeline</span>
-                  <span className="text-xs text-[#FAF8F5] font-medium truncate block">{project.year || '2024'}</span>
-                </div>
-              </div>
+            <div className="p-3.5 rounded-xl bg-[#141720] border border-white/10 flex items-center justify-between text-xs font-mono text-[#FAF8F5]/80">
+              <span className="flex items-center gap-1.5 text-[#E5C887]">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>{BRAND_INFO.location}, {BRAND_INFO.state}</span>
+              </span>
+              <span className="text-white/50">Collab Events Hub</span>
             </div>
-
-            {/* Testimonial Quote if available */}
-            {project.testimonial && (
-              <div className="p-4 bg-[#161922] border-l-2 border-[#C5A059] rounded-r-xl relative">
-                <Quote className="w-6 h-6 text-[#C5A059]/20 absolute top-3 right-3" />
-                <p className="font-serif italic text-xs sm:text-sm text-[#FAF8F5]/90 mb-2">
-                  {project.testimonial}
-                </p>
-                <span className="text-[10px] font-mono text-[#C5A059] tracking-wider uppercase">
-                  — Verified Host Review
-                </span>
-              </div>
-            )}
           </div>
 
-          {/* Footer Action Bar */}
-          <div className="p-4 sm:px-8 border-t border-white/10 bg-[#12151E]/90 flex items-center justify-between gap-4 shrink-0">
+          {/* Footer Action */}
+          <div className="p-4 sm:px-7 border-t border-white/10 bg-[#12151E] flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
             <button
               onClick={onClose}
-              className="px-4 py-2.5 text-xs font-mono uppercase tracking-wider text-[#FAF8F5]/70 hover:text-white transition-colors"
+              className="text-xs font-mono uppercase tracking-wider text-[#FAF8F5]/70 hover:text-white"
             >
-              Close Window
+              Close
             </button>
 
-            <button
-              onClick={() => {
-                onClose();
-                if (onOpenPlanner) onOpenPlanner();
-              }}
-              className="group flex items-center gap-2 px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-[#08090B] bg-[#C5A059] hover:bg-[#E5C887] transition-all rounded-full shadow-lg"
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-6 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-[#08090B] bg-[#E5C887] hover:bg-[#FAF6EE] transition-all rounded-full flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Plan Similar Event</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </button>
+              <MessageCircle className="w-4 h-4" />
+              <span>Inquire This Setup</span>
+            </a>
           </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
   );
 }
-

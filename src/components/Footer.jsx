@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Globe, Camera, Check, Phone, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Camera, Check, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { BRAND_INFO } from '../data/eventData';
 
 export default function Footer({ onOpenPlanner }) {
@@ -16,60 +16,63 @@ export default function Footer({ onOpenPlanner }) {
   };
 
   return (
-    <footer className="bg-[#050608] border-t border-white/10 pt-12 sm:pt-20 pb-10 text-[#FAF8F5]">
+    <footer className="bg-[#050608] border-t border-white/10 pt-14 sm:pt-20 pb-12 text-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-5 lg:px-12">
-        {/* Mobile View: Compact Card Grid | Desktop View: Clean Normal 12-Column Footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-10 pb-12 border-b border-white/10">
+        
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-12 border-b border-white/10">
           
-          {/* Column 1: Brand & Journal (Desktop: Normal Layout | Mobile: Card) */}
-          <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#0B0D12] border border-white/10 shadow-xl lg:bg-transparent lg:border-none lg:p-0 lg:rounded-none lg:shadow-none flex flex-col justify-between">
+          {/* Column 1: Brand & Tagline */}
+          <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
-              <a href="#" className="flex items-center gap-3 mb-3 group">
+              <a href="#" className="flex items-center gap-3 mb-4 group">
                 <img
                   src="/collab_logo.jpg"
-                  alt="Collab Event & Wedding Planner Logo"
-                  className="h-10 sm:h-12 w-auto object-contain rounded-full border border-[#C5A059]/40 group-hover:border-[#C5A059] transition-all shadow-md shrink-0"
+                  alt="Collab Events & Wedding Planner"
+                  className="h-10 sm:h-12 w-auto object-contain rounded-full border border-[#E5C887]/60 group-hover:border-[#E5C887] transition-all shadow-md shrink-0"
                 />
                 <div className="flex flex-col">
                   <span className="font-serif text-xl sm:text-2xl tracking-[0.18em] font-semibold text-[#FAF8F5]">
-                    COLLAB
+                    {BRAND_INFO.brand}
                   </span>
-                  <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#C5A059] font-mono">
-                    EVENT &amp; WEDDING PLANNER
+                  <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#E5C887] font-mono">
+                    {BRAND_INFO.descriptor}
                   </span>
                 </div>
               </a>
-              <p className="hidden sm:block text-xs text-[#FAF8F5]/75 font-light leading-relaxed mb-5 max-w-sm">
-                Designing and producing benchmark destination weddings, corporate summits, and private celebrations across India &amp; international venues.
+
+              <p className="text-xs text-[#FAF8F5]/75 font-light leading-relaxed mb-4 max-w-sm">
+                “At Collab Events &amp; Weddings, we believe every celebration tells a story. Our passion is to turn your dreams into timeless memories with creativity, precision and perfection.”
               </p>
+
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#E5C887] block mb-5 font-semibold">
+                {BRAND_INFO.supportingLine}
+              </span>
             </div>
 
             {/* Newsletter */}
-            <div className="pt-3 sm:pt-4 border-t border-white/10">
-              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C5A059] block mb-2 font-semibold">
-                THE COLLAB JOURNAL
+            <div className="pt-4 border-t border-white/10">
+              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#E5C887] block mb-2 font-semibold">
+                STAY CONNECTED
               </span>
-              <p className="hidden sm:block text-[11px] text-[#A1A1AA] mb-3 font-light">
-                Private invitations &amp; event case studies.
-              </p>
               {subscribed ? (
-                <div className="flex items-center gap-2 text-xs text-[#C5A059] font-mono bg-[#C5A059]/10 p-2 rounded-lg border border-[#C5A059]/30">
+                <div className="flex items-center gap-2 text-xs text-[#E5C887] font-mono bg-[#E5C887]/10 p-2.5 rounded-lg border border-[#E5C887]/30">
                   <Check className="w-3.5 h-3.5" />
-                  <span>Subscribed to Journal</span>
+                  <span>Thank you for subscribing!</span>
                 </div>
               ) : (
                 <form onSubmit={handleSubscribe} className="flex items-center gap-2">
                   <input
                     type="email"
                     required
-                    placeholder="Enter email"
+                    placeholder="Enter your email"
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
-                    className="bg-[#141722] border border-white/15 focus:border-[#C5A059] px-3 py-1.5 text-xs text-[#FAF8F5] rounded-lg focus:outline-none w-full"
+                    className="bg-[#141722] border border-white/15 focus:border-[#E5C887] px-3.5 py-2 text-xs text-[#FAF8F5] rounded-lg focus:outline-none w-full"
                   />
                   <button
                     type="submit"
-                    className="px-3.5 py-1.5 text-[11px] uppercase font-mono bg-[#C5A059] text-[#08090B] font-semibold rounded-lg hover:bg-[#E5C887] transition-colors shrink-0"
+                    className="px-4 py-2 text-[10.5px] uppercase font-mono bg-[#E5C887] text-[#08090B] font-bold rounded-lg hover:bg-[#FAF6EE] transition-colors shrink-0 cursor-pointer"
                   >
                     JOIN
                   </button>
@@ -78,79 +81,102 @@ export default function Footer({ onOpenPlanner }) {
             </div>
           </div>
 
-          {/* Column 2: Quick Links (Standard List) */}
+          {/* Column 2: Navigation Links */}
           <div className="lg:col-span-2 flex flex-col py-2">
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5A059] block mb-4 font-semibold">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#E5C887] block mb-4 font-semibold">
               NAVIGATION
             </span>
-            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-2.5 text-xs text-[#FAF8F5]/80 font-light">
+            <ul className="flex flex-col gap-2.5 text-xs text-[#FAF8F5]/80 font-light">
               <li>
-                <a href="#about" className="hover:text-[#C5A059] transition-colors block py-0.5">About Us</a>
+                <a href="#" className="hover:text-[#E5C887] transition-colors block py-0.5">Home</a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#C5A059] transition-colors block py-0.5">Services</a>
+                <a href="#about" className="hover:text-[#E5C887] transition-colors block py-0.5">About Us</a>
               </li>
               <li>
-                <a href="#portfolio" className="hover:text-[#C5A059] transition-colors block py-0.5">Portfolio</a>
+                <a href="#services" className="hover:text-[#E5C887] transition-colors block py-0.5">Services</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-[#C5A059] transition-colors block py-0.5">Contact</a>
+                <a href="#packages" className="hover:text-[#E5C887] transition-colors block py-0.5">Packages</a>
+              </li>
+              <li>
+                <a href="#catering" className="hover:text-[#E5C887] transition-colors block py-0.5">Catering Menu</a>
+              </li>
+              <li>
+                <a href="#extra-services" className="hover:text-[#E5C887] transition-colors block py-0.5">Extra Services</a>
+              </li>
+              <li>
+                <a href="#portfolio" className="hover:text-[#E5C887] transition-colors block py-0.5">Our Work</a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-[#E5C887] transition-colors block py-0.5">Contact</a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Key Services (Standard List) */}
+          {/* Column 3: Packages & Services */}
           <div className="lg:col-span-3 flex flex-col py-2">
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5A059] block mb-4 font-semibold">
-              EVENT SERVICES
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#E5C887] block mb-4 font-semibold">
+              FEATURED PACKAGES
             </span>
-            <ul className="flex flex-col gap-2 text-xs text-[#FAF8F5]/80 font-light">
+            <ul className="flex flex-col gap-3 text-xs text-[#FAF8F5]/80 font-light mb-6">
               <li>
-                <button onClick={onOpenPlanner} className="hover:text-[#C5A059] transition-colors text-left py-0.5">
-                  • Luxury Weddings
-                </button>
+                <a href="#packages" className="hover:text-[#E5C887] transition-colors block">
+                  <span className="text-[#E5C887] font-mono font-medium block">Silver Package</span>
+                  <span className="text-white/60 text-[11px]">Starting from 435/-</span>
+                </a>
               </li>
               <li>
-                <button onClick={onOpenPlanner} className="hover:text-[#C5A059] transition-colors text-left py-0.5">
-                  • Destination Events
-                </button>
+                <a href="#packages" className="hover:text-[#E5C887] transition-colors block">
+                  <span className="text-[#E5C887] font-mono font-medium block">Golden Package</span>
+                  <span className="text-white/60 text-[11px]">Starting from 925/-</span>
+                </a>
               </li>
               <li>
-                <button onClick={onOpenPlanner} className="hover:text-[#C5A059] transition-colors text-left py-0.5">
-                  • Corporate Summits
-                </button>
-              </li>
-              <li>
-                <button onClick={onOpenPlanner} className="hover:text-[#C5A059] transition-colors text-left py-0.5">
-                  • Stage &amp; Entrance Decor
-                </button>
-              </li>
-              <li>
-                <button onClick={onOpenPlanner} className="hover:text-[#C5A059] transition-colors text-left py-0.5">
-                  • Sound, Light &amp; LED Setup
-                </button>
+                <a href="#packages" className="hover:text-[#E5C887] transition-colors block">
+                  <span className="text-[#E5C887] font-mono font-medium block">Platinum Package</span>
+                  <span className="text-white/60 text-[11px]">Starting from 1450/-</span>
+                </a>
               </li>
             </ul>
+
+            <button
+              onClick={onOpenPlanner}
+              className="text-[11px] font-mono uppercase tracking-wider text-[#E5C887] hover:underline text-left"
+            >
+              Request Custom Quotation →
+            </button>
           </div>
 
-          {/* Column 4: Direct Concierge (Desktop: Normal Layout | Mobile: Card) */}
-          <div className="lg:col-span-3 p-5 sm:p-6 rounded-2xl bg-[#0B0D12] border border-white/10 shadow-xl lg:bg-transparent lg:border-none lg:p-0 lg:rounded-none lg:shadow-none flex flex-col justify-between">
+          {/* Column 4: Verified Direct Concierge */}
+          <div className="lg:col-span-3 p-5 sm:p-6 rounded-2xl bg-[#0B0D12] border border-white/10 shadow-xl flex flex-col justify-between">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5A059] block mb-4 font-semibold">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#E5C887] block mb-4 font-semibold">
                 DIRECT CONCIERGE
               </span>
-              <div className="flex flex-col gap-2.5 text-xs text-[#FAF8F5]/80 font-light mb-5">
-                <a href={`tel:${BRAND_INFO.phone}`} className="flex items-center gap-2 hover:text-[#C5A059] transition-colors">
-                  <Phone className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                  <span className="font-mono">{BRAND_INFO.phone}</span>
+              
+              <div className="flex flex-col gap-3 text-xs text-[#FAF8F5]/85 font-light mb-5">
+                <a
+                  href={`tel:${BRAND_INFO.phone}`}
+                  className="flex items-center gap-2.5 hover:text-[#E5C887] transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-[#E5C887] shrink-0" />
+                  <span className="font-mono">{BRAND_INFO.phoneDisplay}</span>
                 </a>
-                <a href={`mailto:${BRAND_INFO.email}`} className="flex items-center gap-2 hover:text-[#C5A059] transition-colors">
-                  <Mail className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                  <span className="truncate">{BRAND_INFO.email}</span>
+
+                <a
+                  href={BRAND_INFO.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 hover:text-[#25D366] transition-colors"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0" />
+                  <span className="font-mono">{BRAND_INFO.whatsappDisplay}</span>
                 </a>
-                <div className="flex items-center gap-2 text-[#A1A1AA]">
-                  <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                  <span>{BRAND_INFO.location}</span>
+
+                <div className="flex items-center gap-2.5 text-[#FAF8F5]/70">
+                  <MapPin className="w-4 h-4 text-[#E5C887] shrink-0" />
+                  <span>{BRAND_INFO.location}, {BRAND_INFO.state}</span>
                 </div>
               </div>
             </div>
@@ -160,10 +186,10 @@ export default function Footer({ onOpenPlanner }) {
                 href={BRAND_INFO.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-[11px] font-mono text-[#C5A059] hover:underline"
+                className="flex items-center gap-2 text-[11px] font-mono text-[#E5C887] hover:underline"
               >
                 <Camera className="w-3.5 h-3.5" />
-                <span>{BRAND_INFO.handle}</span>
+                <span>@{BRAND_INFO.instagramHandle}</span>
                 <ArrowUpRight className="w-3 h-3" />
               </a>
 
@@ -171,7 +197,7 @@ export default function Footer({ onOpenPlanner }) {
                 href={BRAND_INFO.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 transition-all text-xs font-mono"
+                className="px-2.5 py-1 rounded bg-[#25D366]/15 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/25 transition-all text-[11px] font-mono font-semibold"
               >
                 WhatsApp
               </a>
@@ -180,12 +206,13 @@ export default function Footer({ onOpenPlanner }) {
 
         </div>
 
-        {/* Bottom Copyright & Legal */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#A1A1AA] gap-3">
-          <p>© 2026 COLLAB EVENT HUB. ALL RIGHTS RESERVED.</p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-[#FAF8F5] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#FAF8F5] transition-colors">Terms of Service</a>
+        {/* Bottom Copyright */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FAF8F5]/60 gap-4">
+          <p>© 2026 {BRAND_INFO.brand} {BRAND_INFO.descriptor}. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-6 font-mono text-[11px]">
+            <span>Kannur, Kerala</span>
+            <span>•</span>
+            <a href="#contact" className="hover:text-[#E5C887] transition-colors">Plan Your Event</a>
           </div>
         </div>
       </div>
