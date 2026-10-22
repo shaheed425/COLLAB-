@@ -5,7 +5,7 @@ import { BRAND_INFO } from '../data/eventData';
 
 export default function Hero({ onOpenPlanner }) {
   return (
-    <section className="relative w-full min-h-[72vh] sm:min-h-screen pt-20 sm:pt-32 pb-6 sm:pb-16 flex flex-col justify-center overflow-hidden bg-[#08090B] text-[#FAF8F5]">
+    <section className="relative w-full min-h-[75vh] sm:min-h-screen pt-24 sm:pt-32 pb-6 sm:pb-16 flex flex-col justify-center overflow-hidden bg-[#08090B] text-[#FAF8F5]">
       {/* Cinematic High-Resolution Event Hero Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Mobile View: High-Resolution Portrait Cover */}
@@ -32,9 +32,9 @@ export default function Hero({ onOpenPlanner }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#08090B] via-[#08090B]/40 to-[#08090B]/30 md:from-[#08090B]/90 md:via-transparent md:to-[#08090B]/30 z-1 pointer-events-none"></div>
       </div>
 
-      {/* Hero Content Container */}
+      {/* Hero Content Container - Lowered on Mobile Responsive View */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex flex-col justify-center">
-        <div className="w-full lg:w-[62%] max-w-[700px] flex flex-col items-start text-left pt-[35px] sm:pt-0">
+        <div className="w-full lg:w-[62%] max-w-[700px] flex flex-col items-start text-left pt-[35px] sm:pt-0 translate-y-[42px] sm:translate-y-0">
           
           {/* Brand & Descriptor Tag */}
           <motion.div
